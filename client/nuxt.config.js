@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'client',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
