@@ -32,4 +32,4 @@ jobs:
 
       - name: deploy blog api
         working-directory: ./api
-        run: rsync -auvz -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}
+        run: rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" --include="write-article.php" --exclude="*" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}
