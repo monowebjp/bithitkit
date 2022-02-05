@@ -25,7 +25,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: replace login sha1
-        run: sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/write-article.php
+        run: |
+          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/write-article.php
+          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/bithitkit-app/functions.php
 
       - name: ssh key generate
         run: |
