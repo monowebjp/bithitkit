@@ -24,6 +24,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: replace login sha1
+        run: sed s/${{ secrets.BLOG_LOGIN_SHA1 }}/BLOG_LOGIN_SHA1/ ./api/write-article.php
+
       - name: ssh key generate
         run: |
           mkdir -p ~/.ssh/
