@@ -44,3 +44,10 @@ function replace_image_url ($url) {
 }
 add_filter('wp_get_attachment_url', 'replace_image_url');
 add_filter('attachment_link', 'replace_image_url');
+
+// 画像からclass名を削除する
+function image_tag_delete($html) {
+    return preg_replace( '/class=[\'"]([^\'"]+)[\'"]/i', '', $html );
+}
+add_filter('image_send_to_editor', 'image_tag_delete', 10);
+add_filter('post_thumbnail_html', 'image_tag_delete', 10);
