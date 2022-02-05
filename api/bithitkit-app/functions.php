@@ -51,3 +51,10 @@ function image_tag_delete($html) {
 }
 add_filter('image_send_to_editor', 'image_tag_delete', 10);
 add_filter('post_thumbnail_html', 'image_tag_delete', 10);
+
+// Gutenberg無効化したい
+add_action( 'wp_enqueue_scripts', 'remove_block_library_style' );
+function remove_block_library_style() {
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+}
