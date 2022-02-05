@@ -36,3 +36,11 @@ if (!function_exists('login_change_wp_redirect')) {
         return $location;
     }
 }
+
+
+// 記事内の画像パスを書き換える
+function replace_image_url ($url) {
+    return str_replace(wp_upload_dir()['baseurl'], 'https://blogFiles.bithitkit.com', $url);
+}
+add_filter('wp_get_attachment_url', 'replace_image_url');
+add_filter('attachment_link', 'replace_image_url');
