@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  php8-litespeed:
+    container_name: php8-litespeed
+    build:
+      context: .
+      args:
+        - LSPHP_VERSION=${LSPHP_VERSION}
+    ports:
+      - "7080:7080"
+      - "8088:8088"
+    volumes:
+      - ./www:/var/www
+      - ./config/httpd_config.conf:/usr/local/lsws/conf/httpd_config.conf
+      - ./config/vhconf.conf:/usr/local/lsws/conf/vhosts/www/vhconf.conf

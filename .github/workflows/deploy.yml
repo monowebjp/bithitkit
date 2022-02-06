@@ -24,10 +24,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: replace login sha1
-        run: |
-          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/write-article.php
-          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/bithitkit-app/functions.php
+#      - name: replace login sha1
+#        run: |
+#          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/write-article.php
+#          sed -i -e "s/BLOG_LOGIN_SHA1/${{ secrets.BLOG_LOGIN_SHA1 }}/" ./api/bithitkit-app/functions.php
 
       - name: ssh key generate
         run: |
@@ -36,7 +36,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: deploy blog api
-        working-directory: ./api
+        working-directory: ./api/www/html/bithitkit-app
         run: |
-          rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" --include="write-article.php" --exclude="*" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}
-          rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" --exclude="write-article.php" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}/wp-content/themes/
+#          rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" --include="write-article.php" --exclude="*" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}
+#          rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" --exclude="write-article.php" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.BLOG_SERVER_PATH }}/wp-content/themes/
+          rsync -auvz -e "ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_rsa -p ${{ secrets.BLOG_PORT }}" ./ ${{ secrets.BLOG_ACCOUNT }}@${{ secrets.BLOG_SERVER }}:${{ secrets.API_SERVER_PATH }}
