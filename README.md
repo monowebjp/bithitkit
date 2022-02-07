@@ -2,6 +2,7 @@
 
 ## API開発
 ```
+cd api
 docker-compose up -d
 ```
 

@@ -1,8 +1,7 @@
 FROM ubuntu:20.04
 
 ARG LSPHP_VERSION
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ARG PHP_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     tzdata \
@@ -28,12 +27,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 EXPOSE 7080 8088
 
+COPY ./litespeed/conf/httpd_config.conf /usr/local/lsws/conf/httpd_config.conf
+COPY ./litespeed/conf/vhconf.conf /usr/local/lsws/conf/vhosts/www/vhconf.conf
+
+RUN sed -i -r 's/upload_max_filesize = [0-9]+M/upload_max_filesize = 50M/g' /usr/local/lsws/${LSPHP_VERSION}/etc/php/${PHP_VERSION}/litespeed/php.ini
+RUN sed -i -r 's/post_max_size = [0-9]+M/post_max_size = 50M/g' /usr/local/lsws/${LSPHP_VERSION}/etc/php/${PHP_VERSION}/litespeed/php.ini
+
 ENV PATH $PATH:/usr/local/lsws/lsphp80/bin/
 
 RUN wget https://getcomposer.org/installer -O composer-installer.php \
     && php composer-installer.php --filename=composer --install-dir=/usr/local/bin \
     && rm -f composer-installer.php
 
-CMD ["sh", "-c", "cp -r /usr/local/lsws/Example/html /var/www/; /usr/local/lsws/bin/lswsctrl start; tail -F /usr/local/lsws/logs/error.log /usr/local/lsws/logs/access.log"]
+CMD ["sh", "-c", "/usr/local/lsws/bin/lswsctrl start; tail -F /usr/local/lsws/logs/error.log /usr/local/lsws/logs/access.log"]
 
 WORKDIR /var/www/html
