@@ -6,6 +6,12 @@ cd api
 docker-compose up -d
 ```
 
+## DB ログイン
+```
+docker-compose exec mysql8 bash
+mysql -u root -p bithitkit
+```
+
 ## DB CREATE TABLE
 ```
 cd api/www/html/bithitkit-app
