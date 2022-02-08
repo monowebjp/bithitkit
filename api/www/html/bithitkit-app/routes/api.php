@@ -23,4 +23,4 @@ Route::get('/', function () {
     return 'hello api';
 });
 
-Route::Resource('blogArticle', BlogArticleController::class);
+Route::apiResource('blogArticle', BlogArticleController::class);

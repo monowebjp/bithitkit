@@ -43,7 +43,7 @@ class BlogArticleController extends Controller
     public function store(StoreBlogArticleRequest $request)
     {
         //バリデーションルールを設定
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'content' => 'required|max:255',
         ]);
