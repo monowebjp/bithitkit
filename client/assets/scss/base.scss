@@ -1,0 +1,27 @@
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: A\+EqpB-游ゴシック体 Pr6N M,sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: calc(1em * 80 / 40);
+  background: $backgroundColor;
+  color: $fontColor;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
