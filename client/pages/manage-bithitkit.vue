@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button>ログインボタン</button>
+    <button @click="login">ログインボタン</button>
   </div>
 </template>
 
@@ -25,3 +25,13 @@ button {
   border-radius: convertRem(8);
 }
 </style>
+
+<script lang="ts">
+export default {
+  methods: {
+    login () {
+      location.href = 'http://localhost:8088/auth/redirect/'
+    }
+  }
+}
+</script>
