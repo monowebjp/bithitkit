@@ -1,36 +1,26 @@
 <template>
   <div>
-    <button @click="login">ログインボタン</button>
+    <div>
+      <input type="text" name="title">
+    </div>
+    <div>
+      <textarea v-model="markdown"></textarea>
+    </div>
+    <div v-html="$md.render(markdown)"></div>
+    <div>
+      <button>送信</button>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-div {
-  box-sizing: content-box;
-  max-width: convertRem(640);
-  padding: 0 convertRem(22);
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button {
-  display: block;
-  width: 100%;
-  height: convertRem(80);
-  background: $primaryBtnBgColor;
-  color: $primaryBtnFontColor;
-  border-radius: convertRem(8);
-}
-</style>
+</style>x
 
 <script lang="ts">
 export default {
-  methods: {
-    login () {
-      location.href = 'http://localhost:8088/auth/redirect/'
+  data() {
+    return {
+      markdown: ""
     }
   }
 }
