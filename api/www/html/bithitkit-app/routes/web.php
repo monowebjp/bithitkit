@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/auth/redirect', [GoogleLoginController::class, 'getGoogleAuth']);
-//Route::get('/login/callback', [GoogleLoginController::class, 'authGoogleCallback']);
+Route::get('/login/callback', [GoogleLoginController::class, 'authGoogleCallback']);

@@ -14,16 +14,16 @@ class GoogleLoginController extends Controller
             ->redirect();
     }
 
-//    public function authGoogleCallback()
-//    {
-//        $googleUser = Socialite::driver('google')->stateless()->user();
-//        $user = User::firstOrCreate([
-//            'email' => $googleUser->email
-//        ], [
-//            'email_verified_at' => now(),
-//            'google_id' => $googleUser->getId()
-//        ]);
-//        Auth::login($user, true);
-//        return redirect('/home');
-//    }
+    public function authGoogleCallback()
+    {
+        $googleUser = Socialite::driver('google')->stateless()->user();
+        $user = User::firstOrCreate([
+            'email' => $googleUser->email
+        ], [
+            'email_verified_at' => now(),
+            'google_id' => $googleUser->getId()
+        ]);
+        Auth::login($user, true);
+        return redirect('/home');
+    }
 }
