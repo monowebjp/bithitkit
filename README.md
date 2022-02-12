@@ -12,10 +12,11 @@ docker-compose exec mysql8 bash
 mysql -u root -p bithitkit
 ```
 
-## DB CREATE TABLE
+## DB SETTING
 ```
 cd api/www/html/bithitkit-app
-php artisan make:migration create_[TABLENAME]_table
+php artisan make:migration create_[TABLENAME]_table // テーブル作成
+Php artisan make:migration add_[COLUMNNAME]_to_[TABLENAME]_table // カラム追加
 ```
 
 
