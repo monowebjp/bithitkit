@@ -1,5 +1,6 @@
 <template>
-<Header/>`
+  <Header/>
+  <nuxt/>
 </template>
 
 <script lang="ts">
