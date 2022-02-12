@@ -1,8 +1,9 @@
 <template>
-  <Header/>
-  <nuxt/>
+  <div>
+    <Header/>
+    <nuxt/>
+  </div>
 </template>
 
 <script lang="ts">
-export default {}
 </script>
