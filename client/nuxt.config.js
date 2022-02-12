@@ -21,6 +21,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'modern-css-reset',
+    '~/assets/scss/base.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,9 +40,21 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/markdownit'
   ],
+  markdownit: {
+    runtime: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  styleResources: {
+    scss: [
+      '~/assets/scss/function.scss',
+      '~/assets/scss/variable.scss'
+    ],
   }
 }
